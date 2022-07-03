@@ -18,7 +18,7 @@ class Dashboard extends Views {
 
     function index($value = []){
         $user = Database::getAll("user");
-
+        
         Views::sendData([
             "account" => count($user)
         ]);
@@ -34,6 +34,11 @@ class Dashboard extends Views {
         ]);
     }
 
+    function accountlist(){
+        echo "account list";
+    }
+
+    // function 
     function logout(){
         $logout = Middleware::logout();
         App::redirect("/login");

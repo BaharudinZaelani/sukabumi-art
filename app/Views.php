@@ -1,15 +1,18 @@
 <?php 
 
 class Views {
-    // Web Stitle
     private static $title = "";
-    // Body Content
     private static $bodyContent = [];
-    // data send
+
     public static $dataSend = [];
+    public static $componentsData = [];
 
     function __destruct(){
-        include "./views/layout.php";
+        if(file_exists("./views/layout.php")) {
+            include "./views/layout.php";
+        }else {
+            echo "@error : layout.php not found !";
+        }
     }
 
     // title controller
@@ -28,6 +31,17 @@ class Views {
             $resultPath[] = "./views/" . $row . ".php";
         }
         Views::$bodyContent = $resultPath;
+    }
+
+    public static function getComponents($fileName, $arr = []){
+        Views::$componentsData = $arr;
+        $path = "./views/components/" . $fileName . ".php";
+        if( file_exists($path) ){
+            include $path;
+        }else {
+            echo "@error : $path <b>File not found</b>";
+            die;
+        }
     }
 
     public static function sendData($data = []){

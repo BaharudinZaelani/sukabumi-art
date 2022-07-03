@@ -15,6 +15,7 @@ class LoginLogic {
         $_SESSION['user'] = [
             "username" => $userCek['username'],
             "password" => $userCek['password'],
+            "role" => $userCek['role'],
             "login_time" => App::date(),
         ];
         App::redirect("/dashboard");

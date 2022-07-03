@@ -30,29 +30,26 @@
         </div>
 
         <!-- list nav -->
-        <div class="sidebar-wrapper">
-            <ul class="nav">
-                <li class="active ">
-                    <a href="/dashboard">
-                        <i class="nc-icon nc-bank"></i>
-                        <p>Dashboard</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="/account-list">
-                        <i class="nc-icon nc-single-02"></i>
-                        <p>Account List</p>
-                    </a>
-                </li>
-                <!-- logout -->
-                <li class=" ">
-                    <a href="/dashboard/logout">
-                        <i class="nc-icon nc-minimal-left"></i>
-                        <p>Logout</p>
-                    </a>
-                </li>
-            </ul>
-        </div>
+        <?php Views::getComponents("dashboard/listnav", [
+            [
+                "title" => "Dashboard",
+                "icon" => "nc-bank",
+                "href" => "/dashboard",
+                "is-active" => "active"
+            ],
+            [
+                "title" => "Account List",
+                "icon" => "nc-single-02",
+                "href" => "/dashboard/accountlist",
+                "is-active" => ""
+            ], 
+            [
+                "title" => "Logout",
+                "icon" => "nc-minimal-left",
+                "href" => "/dashboard/logout",
+                "is-active" => ""
+            ]
+        ]); ?>
 
     </div>
 

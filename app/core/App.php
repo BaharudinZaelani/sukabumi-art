@@ -10,7 +10,6 @@ class App {
     {
         session_start();
         $this->pretty($this->url(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)));
-
     }
 
     function pretty($url){
@@ -28,7 +27,7 @@ class App {
         include "../app/controller/" . $this->controller . ".php";
         $this->controller = new $this->controller;
 
-        // var_dump(method_exists($this->controller::class, $this->method)); die;
+        $url[2] = str_replace("-", "", $url[2]);
 
         if ( isset($url[2]) ){
             if( method_exists($this->controller, $url[2]) ){
@@ -42,6 +41,7 @@ class App {
         }
 
         call_user_func_array([$this->controller, $this->method], $this->params);
+        
         
     }
 
