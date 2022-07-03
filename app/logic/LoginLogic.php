@@ -13,10 +13,11 @@ class LoginLogic {
         }
 
         $_SESSION['user'] = [
+            "id" => intval($userCek['id']),
             "username" => $userCek['username'],
             "password" => $userCek['password'],
             "role" => $userCek['role'],
-            "login_time" => App::date(),
+            "login_time" => App::date()
         ];
         App::redirect("/dashboard");
     }

@@ -88,7 +88,8 @@ class Database {
         // UPDATE `user` SET `email` = 'bahar32har@gmail.com', `created_at` = '2022-07-03' WHERE `user`.`id` = 7;
         $strQuery = "UPDATE `$table` SET ";
         foreach ( $data as $key => $row ){
-            $strQuery .= "`$key` = '$row' ,";
+            $res = htmlspecialchars($row);
+            $strQuery .= "`$key` = '$res' ,";
         }
         // auto updated
         $strQuery .= " `updated_at` = '" . App::date() . "'";

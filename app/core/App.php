@@ -23,22 +23,24 @@ class App {
             header("HTTP/1.1 404 Not Found");
             return false;
         }
-        
+
         include "../app/controller/" . $this->controller . ".php";
         $this->controller = new $this->controller;
 
-        $url[2] = str_replace("-", "", $url[2]);
-
         if ( isset($url[2]) ){
+            $url[2] = str_replace("-", "", $url[2]);
             if( method_exists($this->controller, $url[2]) ){
                 $this->method = $url[2];
                 unset($url[2]);
             }
         }
-
+        
+        
         if( !empty($url) ){
-            $this->params[] = array_values($url);
+            $this->params = array_values($url);
         }
+
+        unset($url);
 
         call_user_func_array([$this->controller, $this->method], $this->params);
         
@@ -63,6 +65,14 @@ class App {
 
     public static function redirect($uri, $message = ""){
         header("Location: " . $uri);
+    }
+
+    public static function passwrodVerify($password, $dbPasswordHash, $hasToHash = true){
+        if( $hasToHash ){
+            return $password == $dbPasswordHash;
+        }else {
+            return password_verify($password, $dbPasswordHash);
+        }
     }
     
 }

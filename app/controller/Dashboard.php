@@ -28,14 +28,23 @@ class Dashboard extends Views {
     }
 
     function account(){
-        
+        $dataUser = Database::get("user", "=", "id", Middleware::$user['id']);
+        Views::sendData([
+            "user" => $dataUser
+        ]);
         Views::setContentBody([
             "content" => "contents/dashboard/account"
         ]);
     }
 
     function accountlist(){
-        echo "account list";
+        $user = Database::getAll("user");
+        Views::sendData([
+            "user" => $user
+        ]);
+        Views::setContentBody([
+            "content" => "contents/dashboard/account-list"
+        ]);
     }
 
     // function 

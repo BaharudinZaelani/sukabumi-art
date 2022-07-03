@@ -37,3 +37,23 @@
 .input-submit button:hover {
     opacity: 1;
 }
+.form-group input[type="file"] {
+    opacity: 1 !important;
+    position: relative !important;
+}
+.form-group #cover {
+    width: 100% !important;
+}
+
+/* navbar */
+@media screen and (max-width: 991px){
+    .navbar.navbar-absolute {
+        margin-top: 12px;
+        background-color: #f4f3ef !important;
+    }
+}
+.navbar.navbar-transparent {
+    background-color: #f4f3ef !important;
+    box-shadow: none;
+    border-bottom: 1px solid #ddd;
+}

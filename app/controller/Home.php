@@ -19,4 +19,5 @@ class Home extends Views{
             "contents/home/index",
         ]);
     }
+    
 }

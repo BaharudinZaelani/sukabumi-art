@@ -13,8 +13,8 @@
     <!-- <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" /> -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <!-- CSS Files -->
-    <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="../assets/css/paper-dashboard.css?v=2.0.1" rel="stylesheet" />
+    <link href="<?= Views::assets("css/bootstrap.min.css"); ?>" rel="stylesheet" />
+    <link href="<?= Views::assets("css/paper-dashboard.css?v=2.0.1"); ?>" rel="stylesheet" />
 </head>
 <body>
     <div class="wrp">
@@ -26,14 +26,14 @@
 
     <script src="<?= Views::assets("js/app.js"); ?>"></script>
     <!--   Core JS Files   -->
-    <script src="../assets/js/core/jquery.min.js"></script>
-    <script src="../assets/js/core/popper.min.js"></script>
-    <script src="../assets/js/core/bootstrap.min.js"></script>
-    <script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+    <script src="<?= Views::assets("js/core/jquery.min.js"); ?>"></script>
+    <script src="<?= Views::assets("js/core/popper.min.js"); ?>"></script>
+    <script src="<?= Views::assets("js/core/bootstrap.min.js"); ?>"></script>
+    <script src="<?= Views::assets("js/plugins/perfect-scrollbar.jquery.min.js"); ?>"></script>
     <!-- Chart JS -->
-    <script src="../assets/js/plugins/chartjs.min.js"></script>
+    <script src="<?= Views::assets("js/plugins/chartjs.min.js"); ?>"></script>
     <!--  Notifications Plugin    -->
-    <script src="../assets/js/plugins/bootstrap-notify.js"></script>
+    <script src="<?= Views::assets("js/plugins/bootstrap-notify.js"); ?>"></script>
     
 </body>
 </html>
