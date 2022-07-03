@@ -1,7 +1,12 @@
-Options +FollowSymLinks
 RewriteEngine On
- 
-RewriteCond %{SCRIPT_FILENAME} !-d
-RewriteCond %{SCRIPT_FILENAME} !-f
- 
-RewriteRule ^.*$ ./index.php
+
+Options -Indexes
+
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule . /index.php [L]

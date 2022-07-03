@@ -1,5 +1,6 @@
 <?php 
 
+// Auto Load App function
 spl_autoload_register(function($class){
 	$file = __DIR__ . '\\core\\' . $class . '.php';
 	if (file_exists($file)) {
@@ -7,4 +8,13 @@ spl_autoload_register(function($class){
 	}
 });
 
-$view = new Views();
+// Auto Load Logic
+spl_autoload_register(function($class){
+	$file = __DIR__ . '\\logic\\' . $class . '.php';
+	if (file_exists($file)) {
+		require 'logic/' . $class . '.php';
+	}
+});
+
+// Load Views (Front End)
+include "Views.php";
