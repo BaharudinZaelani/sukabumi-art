@@ -28,10 +28,13 @@ class Database {
             $query = "SELECT * FROM `$table`";
         }
         $result = Database::query($query);
-        while ( $row = mysqli_fetch_assoc($result) ) {
-            $hasil[] = $row;
+        if ( mysqli_num_rows($result) !== 0 ) {
+            while ( $row = mysqli_fetch_assoc($result) ) {
+                $hasil[] = $row;
+            }
+            return $hasil;
         }
-        return $hasil;
+        return [];
     }
 
     public static function get($table = "", $operator = "", $row = "", $value = ""){
@@ -51,11 +54,11 @@ class Database {
         // create a syntax db keys
         $stringRow = "";
 
-        $stringRow .= "(";
+        $stringRow .= "( `id`, ";
         foreach ( $data as $key => $row ){
             $stringRow .= " `$key`,";
         }
-        $stringRow .= ") VALUES (";
+        $stringRow .= ") VALUES ( NULL, ";
         $stringRow = str_replace(",)", ")", $stringRow);
 
 
@@ -74,11 +77,13 @@ class Database {
         // result
         $queryResult = $stringQuery . $stringRow . $stringValue;
 
+        
+
         // execute
         Database::query($queryResult);
 
         return [
-            "Action" => "Success",
+            "status" => "success",
             "message" => $message
         ];
     }
@@ -108,12 +113,19 @@ class Database {
     public static function destroy($table, $id) {
         //  DELETE FROM `user` WHERE `user`.`id` = 8
         $query = "DELETE FROM `$table` WHERE `$table`.`id` = $id";
-        Database::query($query);
+        try{
+            Database::query($query);
+            return [
+                "status" => "success",
+                "message" => "Data berhasil dihapus !"
+            ];
+        }catch( Exception $e ){
+            return [
+                "status" => "error",
+                "message" => "Data gagal dihapus !"
+            ];
+        }
 
-        return [
-            "status" => "success",
-            "message" => "Data berhasil dihapus !"
-        ];
     }
     
 }

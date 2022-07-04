@@ -24,6 +24,10 @@
         <?php endforeach; ?>
     </div>
 
+    <div class="notif">
+        <?php Views::getComponents("alert-with-session")?>
+    </div>
+
     <script src="<?= Views::assets("js/app.js"); ?>"></script>
     <!--   Core JS Files   -->
     <script src="<?= Views::assets("js/core/jquery.min.js"); ?>"></script>

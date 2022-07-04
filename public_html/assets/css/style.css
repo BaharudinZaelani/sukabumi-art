@@ -44,6 +44,22 @@
 .form-group #cover {
     width: 100% !important;
 }
+.form-control {
+    padding-left: 12px !important;
+}
+
+/* notif */
+.notif {
+    min-width: 30vw; 
+    position: fixed;
+    z-index: 9999;
+    bottom: 0;
+    right: 10px;
+}
+.notif .card {
+    overflow: auto;
+    height: 100% !important;
+}
 
 /* navbar */
 @media screen and (max-width: 991px){

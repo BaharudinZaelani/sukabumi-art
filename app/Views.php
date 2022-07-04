@@ -7,6 +7,7 @@ class Views {
     public static $dataSend = [];
     public static $componentsData = [];
 
+
     function __destruct(){
         if(file_exists("./views/layout.php")) {
             include "./views/layout.php";
@@ -54,6 +55,10 @@ class Views {
 
     public static function getContentBody(){
         return Views::$bodyContent;
+    }
+
+    public static function sessionStorage(){
+        return $_SESSION['storage'];
     }
 
     // helper

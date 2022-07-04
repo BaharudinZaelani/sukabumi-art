@@ -43,7 +43,7 @@
                 "title" => "Files",
                 "icon" => "nc-paper",
                 "href" => "/dashboard/files",
-                "is-active" => ""
+                "is-active" => "active"
             ],
             [
                 "title" => "Logout",
@@ -61,7 +61,23 @@
 
         <!-- End Navbar -->
         <div class="content">
-
+            <div class="card-body">
+                <form method="post">
+                    <button class="btn btn-outline-success">Add Files</button>
+                </form>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body"></div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body"></div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <?php Views::getComponents("dashboard/footer"); ?>

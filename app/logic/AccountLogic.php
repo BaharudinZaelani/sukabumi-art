@@ -13,9 +13,8 @@ class AccountLogic {
             if ( App::passwrodVerify($user['password'], Middleware::$user['password']) ) {
                 $edit = Database::update("user", $data, $id, "Profile berhasil diubah !");
 
-                $_SESSION['alert_update_profile'] = $edit;
                 App::redirect("/dashboard/account");
-                return true;
+                return $edit;
             }else {
                 return [
                     "status" => "error",
@@ -31,11 +30,6 @@ class AccountLogic {
 
         return false;
          
-    }
-
-    public static function clearAlertLog(){
-        $_SESSION['alert_update_profile'] = [];
-        unset($_SESSION['alert_update_profile']);
     }
 
 }

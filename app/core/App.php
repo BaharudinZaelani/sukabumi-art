@@ -9,7 +9,13 @@ class App {
     function __construct()
     {
         session_start();
+        
         $this->pretty($this->url(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)));
+        
+        // clear alert notification
+        if ( isset($_POST['clear']) ){
+            App::clearAlert($_POST['name']);
+        }
     }
 
     function pretty($url){
@@ -41,9 +47,10 @@ class App {
         }
 
         unset($url);
-
-        call_user_func_array([$this->controller, $this->method], $this->params);
         
+        call_user_func_array([$this->controller, $this->method], [$this->params]);
+    
+        // var_dump($e);die;
         
     }
 
@@ -73,6 +80,11 @@ class App {
         }else {
             return password_verify($password, $dbPasswordHash);
         }
+    }
+
+    public static function clearAlert($param){
+        $_SESSION['storage'][$param] = [];
+        unset($_SESSION['storage'][$param]);
     }
     
 }

@@ -26,7 +26,7 @@
                         <h5>12<br><small>Files</small></h5>
                     </div>
                     <div class="col-lg col-md-6 col-6 ml-auto mr-auto">
-                        <h5>2GB<br><small>Total Size</small></h5>
+                        <h5>6<br><small>Groups</small></h5>
                     </div>
                 </div>
             </div>

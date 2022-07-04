@@ -1,19 +1,17 @@
 <?php 
 // jika tombol update ditekan
 if ( isset($_POST['update-profile']) ){
-    AccountLogic::updateProfile([
+    $res = AccountLogic::updateProfile([
         "image" => $_POST['image'],
         "cover" => $_POST['cover'],
         "username" => $_POST['username'],
         "email" => $_POST['email'],
         "bio" => $_POST['bio'],
     ], $_POST['password'], Middleware::$user['id']);
+
+    $_SESSION['storage']['alert_update_account'] = $res;
 }
 
-// close alert clicked
-if ( isset($_POST['clear']) ){
-    AccountLogic::clearAlertLog();
-}
 ?>
 
 <!-- style -->
@@ -79,36 +77,6 @@ if ( isset($_POST['clear']) ){
 
         <!-- End Navbar -->
         <div class="content">
-            <div class="row">
-                <!-- update alert -->
-                <?php if ( isset($_SESSION['alert_update_profile']) ) : ?>
-                    <form method="post" class="col-md-12">
-                        <div>
-                            <!-- jika sukssess -->
-                            <?php if( $_SESSION['alert_update_profile']['status'] == "success" ) : ?>
-                                <div class="alert alert-success alert-dismissible fade show">
-                                    <button name="clear" type="submit" class="close" data-dismiss="" aria-label="Close">
-                                        <i class="nc-icon nc-simple-remove"></i>
-                                    </button>
-                                    
-                                    <span><b> Success - </b><?= $_SESSION['alert_update_profile']['message'];?> </span>
-                                </div>
-                            <?php endif; ?>
-
-                            <!-- jika gagal -->
-                            <?php if( $_SESSION['alert_update_profile']['status'] == "error" ) : ?>
-                                <div class="alert alert-danger alert-dismissible fade show">
-                                    <button name="clear" type="submit" class="close" data-dismiss="" aria-label="Close">
-                                        <i class="nc-icon nc-simple-remove"></i>
-                                    </button>
-                                    
-                                    <span><b> Error - </b><?= $_SESSION['alert_update_profile']['message'];?></span>
-                                </div>
-                            <?php endif; ?>
-                        </div>
-                    </form>
-                <?php endif; ?>
-            </div>
             <div class="row">
                 <?php Views::getComponents("dashboard/profile-card")?>
 
