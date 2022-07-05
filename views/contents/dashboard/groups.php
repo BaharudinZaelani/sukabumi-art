@@ -100,7 +100,7 @@ if ( isset($_POST['addGroup']) ) {
                                         <?php foreach ( Views::$dataSend['groups'] as $row ) : ?>
                                             <tr>
                                                 <td>
-                                                    <a class="btn btn-sm btn-outline-success">Edit</a>
+                                                    <a href="/dashboard/groups/edit/<?= $row['id']?>" class="btn btn-sm btn-outline-success">Edit</a>
                                                     <a href="/dashboard/groups/delete/<?= $row['id']?>" class="btn btn-sm btn-outline-danger">Delete</a>
                                                 </td>
                                                 <td>
@@ -160,3 +160,4 @@ if ( isset($_POST['addGroup']) ) {
     </div>
   </div>
 </div>
+

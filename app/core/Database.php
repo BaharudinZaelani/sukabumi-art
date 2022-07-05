@@ -121,13 +121,13 @@ class Database {
     public static function destroy($table, $id) {
         //  DELETE FROM `user` WHERE `user`.`id` = 8
         $query = "DELETE FROM `$table` WHERE `$table`.`id` = $id";
-        try{
-            Database::query($query);
+        
+        if (Database::query($query)) {
             return [
                 "status" => "success",
                 "message" => "Data berhasil dihapus !"
             ];
-        }catch( Exception $e ){
+        }else {
             return [
                 "status" => "error",
                 "message" => "Data gagal dihapus !"

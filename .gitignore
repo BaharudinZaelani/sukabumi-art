@@ -1,1 +1,2 @@
-public_html/storage/uploads/*
+public_html/storage/uploads/*.jpg
+public_html/storage/uploads/*.png

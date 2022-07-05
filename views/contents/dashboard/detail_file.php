@@ -9,6 +9,22 @@ if( isset($_POST['hapus']) ) {
     }
 }
 
+// download file
+if ( isset($_POST['download']) ) {
+    $filepath = "public_html/" . Views::$dataSend['file']['filePath'];
+    if ( file_exists( $filepath ) ) {
+        App::redirect(Views::$dataSend['file']['id'] . "/download");
+        $_SESSION['storage']['download_file'] = [
+            "status" => "success", 
+            "message" => "Gambar berhasil diunduh ! Silahkan cek di folder download anda :)"
+        ];
+    }else {
+        $_SESSION['storage']['download_file'] = [
+            "status" => "error",
+            "message" => "OOPS :( Download Failed ! Internal Server Error !"
+        ];
+    }
+}
 ?>
 <!-- style -->
 <style>
@@ -103,7 +119,7 @@ if( isset($_POST['hapus']) ) {
                             <h4 class="card-title">File Propertie</h4>
                         </div>
                         <div class="card-body">
-                            <div class="table responsive">
+                            <div class="table-responsive">
                                 <table class="table">
                                     <tr>
                                         <th>Name</th>
@@ -146,7 +162,10 @@ if( isset($_POST['hapus']) ) {
                                     <tr>
                                         <td></td>
                                         <td>
-                                            : <button type="button" data-toggle="modal" data-target="#exampleModalCenter" class="btn btn-sm btn-danger">Hapus File</button>
+                                            <form method="post">
+                                                : <button type="button" data-toggle="modal" data-target="#exampleModalCenter" class="btn btn-sm btn-danger">Hapus</button>
+                                                <button name="download" class="btn btn-sm btn-success">Download</button>
+                                            </form>
                                         </td>
                                         <td></td>
                                         <td></td>
