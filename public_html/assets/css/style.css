@@ -73,3 +73,8 @@
     box-shadow: none;
     border-bottom: 1px solid #ddd;
 }
+
+/* shadow */
+.shadow-zaw {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px !important;
+}

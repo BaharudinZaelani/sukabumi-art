@@ -8,6 +8,7 @@ if ( isset($_POST['addGroup']) ) {
         "description" => $_POST['description'],
         "created_at" => App::date()
     ], "Group $name berhasil ditambahkan !");
+    $_SESSION['user']['group_count'] += 1;
     $_SESSION['storage']['alert_add_group'] = $res;
     App::redirect("/dashboard/groups");
 }
@@ -99,7 +100,7 @@ if ( isset($_POST['addGroup']) ) {
                                         <?php foreach ( Views::$dataSend['groups'] as $row ) : ?>
                                             <tr>
                                                 <td>
-                                                    <a class="btn btn-sm btn-outline-success">Add</a>
+                                                    <a class="btn btn-sm btn-outline-success">Edit</a>
                                                     <a href="/dashboard/groups/delete/<?= $row['id']?>" class="btn btn-sm btn-outline-danger">Delete</a>
                                                 </td>
                                                 <td>

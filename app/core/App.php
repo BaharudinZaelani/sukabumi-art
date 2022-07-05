@@ -16,6 +16,12 @@ class App {
         if ( isset($_POST['clear']) ){
             App::clearAlert($_POST['name']);
         }
+
+        // jika session rusak login ulang
+        if ( isset($_SESSION['user']) AND $_SESSION['user']['password'] !== Middleware::$user['password'] ) {
+            Middleware::logout();
+            Middleware::loginArea();
+        }
     }
 
     function pretty($url){
@@ -86,5 +92,16 @@ class App {
         $_SESSION['storage'][$param] = [];
         unset($_SESSION['storage'][$param]);
     }
-    
+
+    public static function byteConvert(string $byte) {
+        // KB detector
+        if ( $byte < 1000000 ) {
+            return substr($byte, 0, 2) . " KB";
+        }
+
+        // MB detector 
+        if( $byte > 1000000 ) {
+            return substr($byte, 0, 2) . " MB";
+        }
+    }
 }

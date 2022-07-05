@@ -58,7 +58,10 @@ class Views {
     }
 
     public static function sessionStorage(){
-        return $_SESSION['storage'];
+        if( isset($_SESSION['storage']) ){
+            return $_SESSION['storage'];
+        }
+        return [];
     }
 
     // helper

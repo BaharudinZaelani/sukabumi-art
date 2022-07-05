@@ -1,3 +1,4 @@
+
 <div class="col-md-4">
     <div class="card card-user">
         <div class="image">
@@ -23,10 +24,10 @@
             <div class="button-container">
                 <div class="row">
                     <div class="col-lg col-md-6 col-6 ml-auto">
-                        <h5>12<br><small>Files</small></h5>
+                        <h5><?= $_SESSION['user']['file_count'];?><br><small>Files</small></h5>
                     </div>
                     <div class="col-lg col-md-6 col-6 ml-auto mr-auto">
-                        <h5>6<br><small>Groups</small></h5>
+                        <h5><?= $_SESSION['user']['group_count'];?><br><small>Groups</small></h5>
                     </div>
                 </div>
             </div>

@@ -18,15 +18,20 @@ class Database {
 
     // Get query
     static function query($query){
-        return mysqli_query(Database::$conn, $query);
+        try{
+            return mysqli_query(Database::$conn, $query);
+        }catch( Exception $e ){
+            return false;
+        }
     }
 
     static function getAll($table = "", $operator = "", $row = "", $value = ""){
-        if( $row !== "" ){
-            $query = "SELECT * FROM `$table` WHERE `$row` $operator $row";
+        if( !empty($operator) ){
+            $query = "SELECT * FROM `$table` WHERE `$row` $operator $value";
         }else {
             $query = "SELECT * FROM `$table`";
         }
+        
         $result = Database::query($query);
         if ( mysqli_num_rows($result) !== 0 ) {
             while ( $row = mysqli_fetch_assoc($result) ) {
@@ -80,7 +85,10 @@ class Database {
         
 
         // execute
-        Database::query($queryResult);
+        $check = Database::query($queryResult);
+        if( !$check ) {
+            return false;
+        }
 
         return [
             "status" => "success",

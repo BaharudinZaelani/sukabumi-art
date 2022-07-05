@@ -48,7 +48,8 @@ class Dashboard extends Views {
     }
 
     function groups( $value = [] ) {
-        $dataGroup = Database::getAll("group_file");
+        $dataGroup = Database::getAll("group_file", "=" , "user_id", Middleware::$user['id']);
+        // var_dump($dataGroup);die;
         $dataUser = Database::get("user", "=", "id", Middleware::$user['id']);
         Views::sendData([
             "user" => $dataUser,
@@ -73,6 +74,40 @@ class Dashboard extends Views {
     }
 
     function files($values = []) {
+        $dataGroup = Database::getAll("group_file", "=", "user_id", Middleware::$user['id']); 
+        $dataFiles = Database::getAll("image_file", "=", "user_id", Middleware::$user['id']);
+        if( isset($values[0]) ){
+            $idFiles = $values[0];
+            $groupId = "";
+            $result = [
+                "file" => "",
+                "group" => ""
+            ];
+            // file search
+            foreach( $dataFiles as $row ){
+                if( $row['id'] == $idFiles ){ 
+                    $result['file'] = $row;
+                    $groupId = $row['group_id'];
+                    break;
+                }
+            }
+            // group search
+            foreach ( $dataGroup as $row ) {
+                if( $row['id'] == $groupId) {
+                    $result['group'] = $row;
+                    break;
+                }
+            }
+
+            Views::sendData($result);
+            Views::setContentBody(["contents/dashboard/detail_file"]);
+            return;
+        }
+        
+        Views::sendData([
+            "group" => $dataGroup,
+            "files" => $dataFiles
+        ]);
         Views::setContentBody(["contents/dashboard/files"]);
     }
 

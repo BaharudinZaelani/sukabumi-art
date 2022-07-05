@@ -5,6 +5,9 @@ class LoginLogic {
     
     public static function login($username, $password){
         $userCek = Database::get("user", "=", "username", $username);
+        $group = Database::getAll("group_file", "=", "user_id", $userCek['id']);
+        $file = Database::getAll("image_file", "=", "user_id", $userCek['id']);
+
         if( $userCek == NULL OR !password_verify($password, $userCek['password']) ){
             return [
                 "status" => "error",
@@ -17,7 +20,9 @@ class LoginLogic {
             "username" => $userCek['username'],
             "password" => $userCek['password'],
             "role" => $userCek['role'],
-            "login_time" => App::date()
+            "login_time" => App::date(),
+            "group_count" => count($group),
+            "file_count" => count($file)
         ];
         App::redirect("/dashboard");
     }
