@@ -1,15 +1,9 @@
 <?php 
 define("URI", "http://127.0.0.1:3000/");
-define("APP_NAME", "Sukabumi-Art");
+define("APP_NAME", "SK-ART");
 
 // Database
 define("HOST", "localhost");
 define("USER", "root");
 define("PASSWORD", "");
 define("DB_NAME", "sukabumi_art");
-
-
-
-
-
-

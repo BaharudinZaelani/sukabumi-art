@@ -143,15 +143,7 @@ class Dashboard extends Views {
             if ( isset($values[1]) AND $values[1] == "download") {
                 $filepath = $result['file']['filePath'];
                 $extension = $result['file']['extension'];
-                header('Content-Description: File Transfer');
-                header('Content-Type: image/' . $extension);
-                header('Content-Disposition: attachment; filename="'.basename($filepath).'"');
-                header('Expires: 0');
-                header('Cache-Control: must-revalidate');
-                header('Pragma: public');
-                header('Content-Length: ' . filesize($filepath));
-                flush(); // Flush system output buffer
-                readfile($filepath);
+                FileLogic::download($filepath, $extension);
                 App::redirect("/dashboard/files/" . $result['file']['id']);
                 return;
             }

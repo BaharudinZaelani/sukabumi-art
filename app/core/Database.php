@@ -1,6 +1,6 @@
 <?php 
 
-class Database {
+class Database{
     private $host = HOST;
     private $user = USER;
     private $pass = PASSWORD;
@@ -12,7 +12,8 @@ class Database {
         try {
             Database::$conn = mysqli_connect($this->host, $this->user, $this->pass, $this->db_name);
         }catch( Exception $e ){
-            die("Unnable to connect DB, Error message : " . $e);
+            require_once $_SERVER['DOCUMENT_ROOT'] . "/errorDb.php";
+            die();
         }
     }
 

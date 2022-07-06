@@ -32,10 +32,6 @@ if ( isset($_POST['download']) ) {
         margin: 0 !important;
         width: 100% !important;
     }
-    /* width */
-    ::-webkit-scrollbar {
-        width: 5px;
-    }
     .content {
         min-height: 80vh;
     }

@@ -30,13 +30,12 @@ class App {
             unset($url[1]);
         }
         
-        if( !file_exists("../app/controller/" . $this->controller . ".php") ){
-            echo "404 Not Found";
-            header("HTTP/1.1 404 Not Found");
+        if( !file_exists( $_SERVER['DOCUMENT_ROOT'] .  "/app/controller/" . $this->controller . ".php") ){
+            App::redirect("/");
             return false;
         }
 
-        include "../app/controller/" . $this->controller . ".php";
+        include  $_SERVER['DOCUMENT_ROOT'] . "/app/controller/" . $this->controller . ".php";
         $this->controller = new $this->controller;
 
         if ( isset($url[2]) ){
@@ -56,7 +55,6 @@ class App {
         
         call_user_func_array([$this->controller, $this->method], [$this->params]);
     
-        // var_dump($e);die;
         
     }
 

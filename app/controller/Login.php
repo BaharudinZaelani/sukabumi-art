@@ -11,7 +11,7 @@ class Login extends Views{
         }
 
         // views
-        Views::setTitle("SK-ART - Login");
+        Views::setTitle("SK-ART Login");
         
         Views::setContentBody([
             "components/header",

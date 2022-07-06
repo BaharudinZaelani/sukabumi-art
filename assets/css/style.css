@@ -7,6 +7,14 @@
     box-sizing: 0;
     font-family: 'Poppins', sans-serif;
 }
+body {
+    background-color: #f4f3ef !important;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+}
 .wrp {
     margin-top: 12px !important;
     width: 80vw;

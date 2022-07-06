@@ -9,8 +9,8 @@ class Views {
 
 
     function __destruct(){
-        if(file_exists("./views/layout.php")) {
-            include "./views/layout.php";
+        if(file_exists( $_SERVER['DOCUMENT_ROOT'] . "/views/layout.php")) {
+            include $_SERVER['DOCUMENT_ROOT'] . "/views/layout.php";
         }else {
             echo "@error : layout.php not found !";
         }
@@ -29,14 +29,14 @@ class Views {
     public function setContentBody($file = []){
         $resultPath = [];
         foreach( $file as $key => $row ){
-            $resultPath[] = "./views/" . $row . ".php";
+            $resultPath[] =  $_SERVER['DOCUMENT_ROOT'] . "/views/" . $row . ".php";
         }
         Views::$bodyContent = $resultPath;
     }
 
     public static function getComponents($fileName, $arr = []){
         Views::$componentsData = $arr;
-        $path = "./views/components/" . $fileName . ".php";
+        $path = $_SERVER['DOCUMENT_ROOT'] . "/views/components/" . $fileName . ".php";
         if( file_exists($path) ){
             include $path;
         }else {
