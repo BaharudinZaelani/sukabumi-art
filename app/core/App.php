@@ -100,12 +100,19 @@ class App {
     }
 
     public static function byteConvert(string $byte) {
+        var_dump($byte);
         // KB detector
         if ( $byte < 1000000 ) {
-            if ( $byte < 100000 ) {
+            if( $byte < 100000 ) {
+                if ( $byte < 10000 ) {
+                    if ( $byte < 10000 ) {
+                        return "0," . substr($byte, 0, 1) . " KB";
+                    }
+                    return substr($byte, 0, 1) . " KB";
+                }
                 return substr($byte, 0, 2) . " KB";
             }
-            return substr($byte, 0, 1) . " KB";
+            return substr($byte, 0, 3) . " KB";
         }
 
         // MB detector 
