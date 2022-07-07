@@ -21,6 +21,18 @@ body {
     margin: auto;
 }
 
+/* sidebar */
+.sidebar.show {
+    left: 260px !important;
+}
+.navbar-wrapper button, .navbar-toggler {
+    box-shadow: none !important;
+    border: none !important;
+}
+.navbar-nav li a {
+    color: #000000 !important;
+}
+
 /* input-group */
 .input-group, .input-submit{
     padding-top: 22px !important;
@@ -86,4 +98,9 @@ body {
 /* shadow */
 .shadow-zaw {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px !important;
+}
+
+/* table */
+.table td, .table th {
+    white-space: nowrap !important;
 }
