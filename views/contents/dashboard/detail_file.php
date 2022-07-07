@@ -11,7 +11,7 @@ if( isset($_POST['hapus']) ) {
 
 // download file
 if ( isset($_POST['download']) ) {
-    $filepath = "public_html/" . Views::$dataSend['file']['filePath'];
+    $filepath = $_SERVER['DOCUMENT_ROOT'] . "/" . Views::$dataSend['file']['filePath'];
     if ( file_exists( $filepath ) ) {
         App::redirect(Views::$dataSend['file']['id'] . "/download");
         $_SESSION['storage']['download_file'] = [
