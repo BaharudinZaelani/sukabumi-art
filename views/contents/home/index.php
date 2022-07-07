@@ -4,7 +4,8 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <a href="/login" class="btn btn-outline-primary">Sign In<a>
+                    <a href="/login" class="btn btn-primary">Sign In<a>
+                    <a href="/about" class="btn btn-secondary">About<a>
                 </div>
             </div>
         </div>
