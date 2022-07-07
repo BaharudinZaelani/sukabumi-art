@@ -14,6 +14,12 @@ if( isset($_POST['download']) ) {
         justify-content: center;
         align-items: center;
     }
+    .d-grid {
+        grid-template-columns: 1fr 1fr;
+        align-content: center;
+        justify-content: center;
+        justify-items: center;
+    }
 </style>
 <div class="container">
     <div class="row">
@@ -25,9 +31,41 @@ if( isset($_POST['download']) ) {
                     </div>
                 </div>
             </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-grid">
+                        <?php 
+                            if (Views::$dataSend['prevItem']['exists']) { 
+                                $item = explode("/", Views::$dataSend['prevItem']['item']['filePath']);
+                                $item = explode(".", end($item));
+                            
+                            ?>
+                            <a href="/file/<?= $item[0] . "/" . Views::$dataSend['prevItem']['item']['group_id'] ?>">< Sebelumnya</a>
+                        <?php }else {
+                            echo "<div></div>";
+                        } ?>
+
+                        <?php 
+                            if (Views::$dataSend['nextItem']['exists']) : 
+                                $item = explode("/", Views::$dataSend['nextItem']['item']['filePath']);
+                                $item = explode(".", end($item));
+                            
+                            ?>
+                            <a href="/file/<?= $item[0] . "/" . Views::$dataSend['nextItem']['item']['group_id'] ?>">Selanjutnya ></a>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="col-md">
+            <div class="card">
+                <div class="card-body">
+                    <?= Views::$dataSend['group']['description']; ?>
+                </div>
+            </div>
+
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">File Propertie</h4>
@@ -38,48 +76,48 @@ if( isset($_POST['download']) ) {
                             <tr>
                                 <th>Name</th>
                                 <td>: <?= Views::$dataSend['file']['name'];  ?></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                
+                                
+                                
+                                
                             </tr>
                             <tr>
                                 <th>in Group</th>
                                 <td>: <?= Views::$dataSend['group']['name'];  ?></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                
+                                
+                                
+                                
                             </tr>
                             <tr>
                                 <th>Size </th>
                                 <td>: <?= App::byteConvert(Views::$dataSend['file']['size'])?></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                
+                                
+                                
+                                
                             </tr>
                             <tr>
                                 <th>Dimension </th>
                                 <td>: <?= Views::$dataSend['file']['width'] . "x" . Views::$dataSend['file']['height']  ?></td>
-                                <td></td>
-                                <td></td>
+                                
+                                
                             </tr>
                             <tr>
                                 <th>Uploaded By </th>
                                 <td>: <code><?= Views::$dataSend['user']['username'] ?></code></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                
+                                
+                                
+                                
                             </tr>
                             <tr>
                                 <th>Uploaded </th>
                                 <td>: <?= Views::$dataSend['file']['created_at'] ?></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                
+                                
+                                
+                                
                             </tr>
                             <tr>
                                 <td></td>
@@ -88,10 +126,10 @@ if( isset($_POST['download']) ) {
                                         : <button name="download" class="btn btn-sm btn-success">Download</button>
                                     </form>
                                 </td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                
+                                
+                                
+                                
                             </tr>
                         </table>
                     </div>

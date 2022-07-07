@@ -34,13 +34,16 @@ class Database{
         }
         
         $result = Database::query($query);
-        if ( mysqli_num_rows($result) !== 0 ) {
-            while ( $row = mysqli_fetch_assoc($result) ) {
-                $hasil[] = $row;
+        if ( $result ) {
+            if ( mysqli_num_rows($result) !== 0 ) {
+                while ( $row = mysqli_fetch_assoc($result) ) {
+                    $hasil[] = $row;
+                }
+                return $hasil;
             }
-            return $hasil;
         }
-        return [];
+        
+        return false;
     }
 
     public static function get($table = "", $operator = "", $row = "", $value = ""){

@@ -38,7 +38,7 @@
                                             $result = explode(".", $row['filePath']); 
                                             $result = explode("/", $result[0]);
                                         ?>
-                                        <a href="file/<?= $result[2]; ?>" class="card shadow-zaw image-button">
+                                        <a href="file/<?= $result[2] . "/" . $group['id']; ?>" class="card shadow-zaw image-button">
                                             <img 
                                                 src="<?= URI . $row['filePath']; ?>" 
                                                 class="card-img-top" 

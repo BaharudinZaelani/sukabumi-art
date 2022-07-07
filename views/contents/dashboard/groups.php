@@ -109,8 +109,12 @@ if ( isset($_POST['addGroup']) ) {
                                                 <td><?= $row['description']?></td>
                                                 <td>
                                                     <?php 
+                                                    if ( is_array(Database::getAll("image_file", "=", "group_id", $row['id'])) ) {
                                                         $count = count(Database::getAll("image_file", "=", "group_id", $row['id']));
                                                         echo $count;
+                                                    }else {
+                                                        echo 0;
+                                                    }
                                                     ?>
                                                 </td>
                                             </tr>
