@@ -102,12 +102,15 @@ class App {
     public static function byteConvert(string $byte) {
         // KB detector
         if ( $byte < 1000000 ) {
-            return substr($byte, 0, 2) . " KB";
+            if ( $byte < 100000 ) {
+                return substr($byte, 0, 2) . " KB";
+            }
+            return substr($byte, 0, 1) . " KB";
         }
 
         // MB detector 
         if( $byte > 1000000 ) {
-            return substr($byte, 0, 2) . " MB";
+            return substr($byte, 0, 1) . " MB";
         }
     }
 }
