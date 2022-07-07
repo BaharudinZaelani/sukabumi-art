@@ -9,7 +9,7 @@ class Home extends Views{
     function __construct(){
         new Database();
         // get data
-        $this->groups = Database::getAll("group_file");
+        $this->groups = Database::getAll("`group_file` ORDER BY id DESC");
         $this->files = Database::getAll("image_file");
         $this->users = Database::getAll("user");
 

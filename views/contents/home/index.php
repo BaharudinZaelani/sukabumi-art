@@ -22,7 +22,7 @@
                     continue;
                 }
             ?>
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <div class="card">
                     <div class="card-header">
                         <h1 class="card-title" style="font-size: 1.4rem;"><?= $group['name'] . " <code>$fileCount</code>"; ?> </h1>
@@ -33,18 +33,22 @@
                             <?php foreach ( Views::$dataSend['files'] as $row ) :  ?>
                                 <?php if ( $row['group_id'] == $group['id']) : ?>
                                     <?php $fileCount++; ?>
-                                    <div class="col-6">
-                                        <?php 
-                                            $result = explode(".", $row['filePath']); 
-                                            $result = explode("/", $result[0]);
-                                        ?>
-                                        <a href="file/<?= $result[2] . "/" . $group['id']; ?>" class="card shadow-zaw image-button">
-                                            <img 
-                                                src="<?= URI . $row['filePath']; ?>" 
-                                                class="card-img-top" 
-                                                >
-                                        </a>
-                                    </div>
+
+                                    <?php if ( $fileCount <= 1 ) : ?>
+                                        <div class="col-12">
+                                            <?php 
+                                                $result = explode(".", $row['filePath']); 
+                                                $result = explode("/", $result[0]);
+                                            ?>
+                                            <a href="file/<?= $result[2] . "/" . $group['id']; ?>" class="card shadow-zaw image-button">
+                                                <img 
+                                                    src="<?= URI . $row['filePath']; ?>" 
+                                                    class="card-img-top" 
+                                                    >
+                                            </a>
+                                        </div>
+                                    <?php endif; ?>
+
                                 <?php endif; ?>
                             <?php endforeach; ?>
                         </div>

@@ -28,9 +28,9 @@ class Database{
 
     static function getAll($table = "", $operator = "", $row = "", $value = ""){
         if( !empty($operator) ){
-            $query = "SELECT * FROM `$table` WHERE `$row` $operator $value";
+            $query = "SELECT * FROM $table WHERE `$row` $operator $value";
         }else {
-            $query = "SELECT * FROM `$table` ORDER BY id DESC";
+            $query = "SELECT * FROM $table";
         }
         
         $result = Database::query($query);
