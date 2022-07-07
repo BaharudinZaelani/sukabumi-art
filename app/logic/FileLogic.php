@@ -4,13 +4,14 @@
 class FileLogic {
 
     public static function hapus($id, $filePath) {
-        $dir = "./public_html/$filePath";
+        $dir = $_SERVER['DOCUMENT_ROOT'] . "/$filePath";
         if(file_exists($dir)) {
             $res = Database::destroy("image_file", $id);
             if( $res['status'] == "success" ) {
                 unlink($dir);
             }
             $_SESSION['storage']['hapus_file'] = $res;
+            $_SESSION['user']['file_count'] -= 1;
             return true;
         }else {
             $_SESSION['storage']['hapus_file'] = [
