@@ -18,9 +18,16 @@ class Dashboard extends Views {
 
     function index($value = []){
         $user = Database::getAll("user");
+        $image = Database::getAll("image_file");
+        $storageUsed = 0;
+
+        foreach( $image as $row ) {
+            $storageUsed += $row['size'];
+        }
         
         Views::sendData([
-            "account" => count($user)
+            "account" => count($user),
+            "storage" => App::byteConvert( 5112000000 - $storageUsed)
         ]);
         Views::setContentBody([
             "content" => "contents/dashboard/index"

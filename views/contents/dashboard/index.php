@@ -101,8 +101,8 @@
                                 </div>
                                 <div class="col-7 col-md-8">
                                     <div class="numbers">
-                                        <p class="card-category">Storage Used</p>
-                                        <p class="card-title">0<p>
+                                        <p class="card-category">Free Storage</p>
+                                        <small><?= Views::$dataSend['storage']; ?><small>
                                     </div>
                                 </div>
                             </div>

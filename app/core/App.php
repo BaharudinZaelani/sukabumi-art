@@ -116,6 +116,16 @@ class App {
 
         // MB detector 
         if( $byte > 1000000 ) {
+            // var_dump($byte);die;
+            if ( $byte > 10000000 ) {
+                if ( $byte > 100000000 ) {
+                    if ( $byte > 1000000000 ) {
+                        return substr($byte, 0, 1) . " GB";
+                    }
+                    return substr($byte, 0, 3) . " MB";
+                }
+                return substr($byte, 0, 2) . " MB";
+            }
             return substr($byte, 0, 1) . " MB";
         }
     }
