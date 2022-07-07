@@ -30,7 +30,7 @@ class Database{
         if( !empty($operator) ){
             $query = "SELECT * FROM `$table` WHERE `$row` $operator $value";
         }else {
-            $query = "SELECT * FROM `$table`";
+            $query = "SELECT * FROM `$table` ORDER BY id DESC";
         }
         
         $result = Database::query($query);
