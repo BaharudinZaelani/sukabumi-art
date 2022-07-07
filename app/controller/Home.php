@@ -19,7 +19,6 @@ class Home extends Views{
             "components/header",
             "contents/home/index",
         ]);
-
     }
 
     function index(){

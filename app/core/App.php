@@ -22,6 +22,14 @@ class App {
             Middleware::logout();
             Middleware::loginArea();
         }
+
+        $files = Database::getAll("image_file");
+        // cek jika file tidak ada di folder uploads
+        if ( !is_null($files) ) {
+        	foreach ( $files as $row ) {
+        		FileLogic::checkFile($row['filePath'], $row['id']);
+        	}
+        }
     }
 
     function pretty($url){

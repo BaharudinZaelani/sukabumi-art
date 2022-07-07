@@ -3,11 +3,11 @@
 
 class UploadFile {
 
-    private static $targetDir = "public_html/storage/uploads/";
+    private static $targetDir = "/storage/uploads/";
 
     public static function upload($file = [], int $groupid = 0){
         $baseName = basename( time() . "_" . $file['file_data']['name']);
-        $targetFile = UploadFile::$targetDir . $baseName;
+        $targetFile = $_SERVER["DOCUMENT_ROOT"] . UploadFile::$targetDir . $baseName;
         $imageFileType = strtolower(pathinfo($targetFile,PATHINFO_EXTENSION));
 
         // jika bukan png/jpg
@@ -41,7 +41,7 @@ class UploadFile {
                     "extension" => $imageFileType,
                     "created_at" => App::date()
                 ]);
-                // var_dump($add);die;
+
                 if ( $add == false ) {
                     $_SESSION['storage']['upload'] = [
                         "status" => "error",

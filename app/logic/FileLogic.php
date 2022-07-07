@@ -34,4 +34,11 @@ class FileLogic {
         exit;
     }
 
+    static function checkFile($path, $idFile){
+        if ( !file_exists($path) ) {
+            Database::destroy("image_file", $idFile);
+        }
+        return;
+    }
+
 }
