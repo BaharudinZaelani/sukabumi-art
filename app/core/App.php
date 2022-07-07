@@ -100,7 +100,6 @@ class App {
     }
 
     public static function byteConvert(string $byte) {
-        var_dump($byte);
         // KB detector
         if ( $byte < 1000000 ) {
             if( $byte < 100000 ) {
