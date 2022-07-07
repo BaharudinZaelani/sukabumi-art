@@ -1,4 +1,14 @@
+<?php 
 
+// jika tombol BANNED ditekan hapus user yang diBANNED!
+if ( isset($_POST['hapus']) ) {
+    $idUser = $_POST['idUser'];
+
+    $hapus = Database::destroy("user", $idUser);
+    $_SESSION['storage']['hapusAkun'] = $hapus;
+    App::redirect("/dashboard/accountlist");
+}
+?>
 <!-- style -->
 <style>
     .wrp {
@@ -81,19 +91,24 @@
                                         <?php endif; ?>
                                     </thead>
                                     <tbody>
-                                        <?php foreach( Views::$dataSend['user'] as $row ) : ?>
-                                            <tr>
-                                                <td><?= $row['username']?></td>
-                                                <td><?= $row['role']?></td>
-                                                <td><?= $row['email']?></td>
-                                                <td><?= $row['updated_at']?></td>
-                                                <?php if( Middleware::$user['role'] == "dev" ) : ?>
-                                                    <td>
-                                                        <button name="hapus" class="btn btn-sm btn-danger">BANNED</button>
-                                                    </td>
-                                                <?php endif; ?>
-                                            </tr>
-                                        <?php endforeach;?>
+                                        <form method="post">
+                                            <?php foreach( Views::$dataSend['user'] as $row ) : ?>
+                                                <tr>
+                                                    <td><?= $row['username']?></td>
+                                                    <td><?= $row['role']?></td>
+                                                    <td><?= $row['email']?></td>
+                                                    <td><?= $row['updated_at']?></td>
+                                                    <?php if( Middleware::$user['role'] == "dev" ) : ?>
+                                                        <td>
+                                                            <?php if ( $row['id'] == Middleware::$user['id'] ) {}else{ ?>                                                        
+                                                                <input hidden name="idUser" value="<?= $row['id'] ?>">
+                                                                <button name="hapus" class="btn btn-sm btn-danger">BANNED</button>
+                                                            <?php }?>
+                                                        </td>
+                                                    <?php endif; ?>
+                                                </tr>
+                                            <?php endforeach;?>
+                                        </form>
                                     </tbody>
                                 </table>
                             </div>
