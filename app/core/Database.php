@@ -22,7 +22,10 @@ class Database{
         try{
             return mysqli_query(Database::$conn, $query);
         }catch( Exception $e ){
-            return false;
+            return [
+                "status" => false,
+                "message" => $e
+            ];
         }
     }
 
@@ -138,6 +141,15 @@ class Database{
             ];
         }
 
+    }
+
+    public static function fetch($query) {
+        $result = Database::query($query);
+        $hasil = [];
+        while ( $row = mysqli_fetch_assoc($result) ) {
+            $hasil[] = $row;
+        }
+        return $hasil;
     }
     
 }

@@ -7,6 +7,11 @@ class LoginLogic {
         $userCek = Database::get("user", "=", "username", $username);
         $group = Database::getAll("group_file", "=", "user_id", $userCek['id']);
         $file = Database::getAll("image_file", "=", "user_id", $userCek['id']);
+        if ( $file == false ) {
+            $file = 0;
+        }else {
+            $file = count($file);
+        }
 
         if( $userCek == NULL OR !password_verify($password, $userCek['password']) ){
             return [
@@ -22,7 +27,7 @@ class LoginLogic {
             "role" => $userCek['role'],
             "login_time" => App::date(),
             "group_count" => count($group),
-            "file_count" => count($file)
+            "file_count" => $file
         ];
         App::redirect("/dashboard");
     }

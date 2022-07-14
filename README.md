@@ -6,7 +6,7 @@
 Website storage online atau Cloud storage, website test hasil dari web-framework buatan @BaharDev
 
 ## Demo
-<a href="https:://skartapp.rf.gd">https:://skartapp.rf.gd</a>
+<a href="https://skartapp.rf.gd">https://skartapp.rf.gd</a>
 
 ## Repo
 ![GitHub last commit](https://img.shields.io/github/last-commit/BaharudinZaelani/sukabumi-art?label=Commit&style=flat-square)

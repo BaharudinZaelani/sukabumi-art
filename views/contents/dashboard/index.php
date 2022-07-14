@@ -112,74 +112,59 @@
 
             </div>
 
-            <!-- <div class="row">
+            <div class="row">
                 <div class="col-md-12">
                     <div class="card ">
                         <div class="card-header ">
-                            <h5 class="card-title">Users Behavior</h5>
-                            <p class="card-category">24 Hours performance</p>
+                            <h3 class="card-title">Query to Database</h3>
+                            <h5>Only for <code>dev</code> role, jangan gunakan fitur ini jika tidak mengerti !!! Karena fitur ini langsung attach ke database !!! <b>INGAT LUURDDD</b></h5>
                         </div>
 
                         <div class="card-body ">
-                            <canvas id=chartHours width="400" height="100"></canvas>
-                        </div>
+                            <form method="post">
+                                <div class="form-group mb-3">
+                                    <textarea type="text" name="query" style="width: 100% !important; height: 30vh; padding: 5px !important;"></textarea>
+                                </div>
 
-                        <div class="card-footer ">
-                            <hr>
-                            <div class="stats">
-                                <i class="fa fa-history"></i> Updated 3 minutes ago
-                            </div>
+                                <div class="input-radio">
+                                    <div class="flex">
+                                        <input name="fetch" type="checkbox" id="withGetAll">
+                                        <div>
+                                            <label for="withGetAll">With Fetch Assoc (Array)</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button <?= ( Middleware::$user['role'] !== "dev" ) ? "disabled" : ""?> name="sendQ" class="btn btn-success">SEND</button>
+                            </form>
                         </div>
                     </div>
                 </div>
-            </div> -->
 
-            <!-- <div class="row">
-                <div class="col-md-4">
-                    <div class="card ">
-                        <div class="card-header ">
-                            <h5 class="card-title">Email Statistics</h5>
-                            <p class="card-category">Last Campaign Performance</p>
-                        </div>
-                        <div class="card-body ">
-                            <canvas id="chartEmail"></canvas>
-                        </div>
-                        <div class="card-footer ">
-                            <div class="legend">
-                                <i class="fa fa-circle text-primary"></i> Opened
-                                <i class="fa fa-circle text-warning"></i> Read
-                                <i class="fa fa-circle text-danger"></i> Deleted
-                                <i class="fa fa-circle text-gray"></i> Unopened
-                            </div>
-                            <hr>
-                            <div class="stats">
-                                <i class="fa fa-calendar"></i> Number of emails sent
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-8">
-                    <div class="card card-chart">
-                        <div class="card-header">
-                            <h5 class="card-title">NASDAQ: AAPL</h5>
-                            <p class="card-category">Line Chart with Points</p>
-                        </div>
+                <!-- result -->
+                <div class="col-md-12">
+                    <div class="card">
                         <div class="card-body">
-                            <canvas id="speedChart" width="400" height="100"></canvas>
-                        </div>
-                        <div class="card-footer">
-                            <div class="chart-legend">
-                                <i class="fa fa-circle text-info"></i> Tesla Model S
-                                <i class="fa fa-circle text-warning"></i> BMW 5 Series
-                            </div>
-                            <hr />
-                            <div class="card-stats">
-                                <i class="fa fa-check"></i> Data information certified
-                            </div>
+                            <?php 
+                                if ( isset($_POST['sendQ']) ) {
+                                    // check if user as role dev
+                                    if ( Middleware::$user['role'] == "dev" ) {    
+                                        if ( isset($_POST['fetch']) AND $_POST['fetch'] == "on" ) {
+                                            $res = Database::fetch($_POST['query']);
+                                        }else {
+                                            $res = Database::query($_POST['query']);
+                                        }
+                                    }else {
+                                        $res = "kamu bukan baharDev >:( !";
+                                    }
+
+                                    var_dump($res);
+                                }
+                            ?>
                         </div>
                     </div>
                 </div>
-            </div> -->
+            </div>
         </div>
 
         <?php Views::getComponents("dashboard/footer"); ?>

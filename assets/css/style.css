@@ -104,3 +104,17 @@ body {
 .table td, .table th {
     white-space: nowrap !important;
 }
+
+/* checkbox/ radio */
+.input-radio .flex div {
+    margin-top: 2px;
+    padding-left: 12px;
+    font-size: 1rem;
+}
+.input-radio .flex {
+    display: flex;
+    justify-items: center;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: stretch;
+}
